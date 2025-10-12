@@ -100,6 +100,86 @@ void find_path(int** matrix, int ySize, int xSize, int yStart, int xStart, int y
 	matrix[yEnd][xEnd] = 127;//end
 }
 
+void heapify_vec(std::vector<MyPoint> arr, int len, int i) {
+	if (i > len) { return; }
+
+	int curr = i;
+	int left = i * 2 + 1;
+	int right = i * 2 + 2;
+
+	if (left < len && arr.at(curr).n > arr.at(left).n) {
+		curr = left;
+	}
+	if (right < len && arr.at(curr).n > arr.at(right).n) {
+		curr = right;
+	}
+
+	if (curr != i) {
+		std::swap(arr.at(curr).n, arr.at(i).n);
+		heapify_vec(arr, len, curr);
+	}
+}
+
+void find_path_with_priorities(int** matrix, int ySize, int xSize, int yStart, int xStart, int yEnd, int xEnd) {
+	if (xStart == xEnd || yStart == yEnd) { return; }
+
+	int** dMatrix = new int* [xSize];
+	for (int i = 0; i < xSize; i++) {
+		dMatrix[i] = new int[ySize];
+		for (int j = 0; j < ySize; j++) { dMatrix[i][j] = -1; }
+	}
+
+
+	dMatrix[yStart][xStart] = 0;
+
+	std::vector<MyPoint> queue_;
+	queue_.push_back({xStart, yStart, 0});
+	bool pathFound = false;
+
+	int X_[] = { -1, 1, 0, 0 };
+	int Y_[] = { 0, 0, -1, 1 };
+	for (; !queue_.empty();) {
+		heapify_vec(queue_, queue_.size(), 0);
+		MyPoint current = queue_.front();
+		std::cout << current.x << ' ' << current.y << ' ' << current.n << '\n';
+
+		//int nz = current.n + matrix[current.y][current.x];
+
+		for (int i = 0; i < 4; i++) {
+			int nx = X_[i] + current.x;
+			int ny = Y_[i] + current.y;
+			std::cout << nx << ' ' << ny << '\n';
+			if (nx >= xSize || nx < 0 || ny >= ySize || ny < 0) continue;
+			if (matrix[ny][nx] != -1 && (dMatrix[ny][nx] == -1 || dMatrix[ny][nx] > current.n + matrix[ny][nx])) {
+				queue_.push_back({ nx,ny,current.n + matrix[ny][nx] });
+				dMatrix[ny][nx] = current.n + matrix[ny][nx];
+
+				//matrix[ny][nx] = -8;
+			}
+		}
+		printMatrix(dMatrix, ySize, xSize);
+		queue_.erase(queue_.begin());
+	}
+	printMatrix(dMatrix, ySize, xSize);
+	int x = xEnd;
+	int y = yEnd;
+	for (int i = 0; i < 128; i++) {
+		for (int j = 0; j < 4; j++) {
+			int nx = X_[j] + x;
+			int ny = Y_[j] + y;
+			if (nx >= xSize || nx < 0 || ny >= ySize || ny < 0) continue;
+			if (dMatrix[ny][nx] != -1 && dMatrix[ny][nx] < dMatrix[y][x]) {
+				x = nx;
+				y = ny;
+				matrix[y][x] = -2;
+			}
+		}
+		if (x == xStart && y == yStart) break;
+	}
+	matrix[yStart][xStart] = -128;//start
+	matrix[yEnd][xEnd] = 127;//end
+}
+
 
 
 
@@ -385,11 +465,11 @@ int main() {
 	int x3[] = { WW,__,WW,__,WW,WW,__,__ };
 	int x4[] = { WW,__,WW,__,WW,__,__,WW };
 	int x5[] = { WW,__,WW,__,__,WW,__,WW };
-	int x6[] = { __,__,WW,WW,WW,WW,__,WW };
+	int x6[] = { WW,II,WW,WW,WW,WW,__,WW };
 	int x7[] = { __,__,__,__,__,__,__,WW };
-	int x8[] = { __,__,WW,WW,WW,WW,WW,WW };
+	int x8[] = { __,__,__,WW,WW,WW,WW,WW };
 	int* M[] = {x1,x2,x3,x4,x5,x6,x7,x8};
-	find_path(M, 8, 8, 1, 1, 6, 3);
+	find_path_with_priorities(M, 8, 8, 1, 1, 6, 3);
 
 	printMatrix_(M, 8, 8);
 	//for (int i = 12; i < 16; i++) {for (int j = 0; j < 16; j++) {std::cout << (char)(i*16+j) << " - " << (i * 16 + j) << "";}

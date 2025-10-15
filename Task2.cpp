@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
 #include <queue>
+#include "OrderedQueue.h"
 
 struct Point {
 	int x;
@@ -12,46 +13,7 @@ struct MyPoint {
 	int n;
 };
 
-class OrderedQueue {
-	std::vector<MyPoint> vec;
-public:
-	void add(MyPoint point) {
-		vec.push_back(point);
-	}
-	bool is_empty() {
-		return vec.empty();
-	}
-	void heapify() {
-		heapify(0);
-	}
-	void heapify(int i) {
-		int len = vec.size();
-		if (i > len) { return; }
-
-		int curr = i;
-		int left = i * 2 + 1;
-		int right = i * 2 + 2;
-
-		if (left < len && vec.at(curr).n > vec.at(left).n) {
-			curr = left;
-		}
-		if (right < len && vec.at(curr).n > vec.at(right).n) {
-			curr = right;
-		}
-
-		if (curr != i) {
-			std::swap(vec.at(curr).n, vec.at(i).n);
-			heapify(curr);
-		}
-	}
-	MyPoint pop() {
-		MyPoint result = vec.front();
-		vec.at(0) = vec.back();
-		vec.pop_back();
-		heapify(0);
-		return result;
-	}
-};
+bool DEBUG = false;
 
 void printMatrix_(int** matrix, int ySize, int xSize) {
 	for (int i = 0; i < ySize; i++) {
@@ -118,7 +80,7 @@ void find_path(int** matrix, int ySize, int xSize, int yStart, int xStart, int y
 				//matrix[ny][nx] = -8;
 			}
 		}
-		printMatrix(dMatrix, ySize, xSize);
+		//printMatrix(dMatrix, ySize, xSize);
 		queue_.pop();
 	}
 	printMatrix(dMatrix, ySize, xSize);
@@ -143,7 +105,7 @@ void find_path(int** matrix, int ySize, int xSize, int yStart, int xStart, int y
 
 
 void find_path_with_priorities(int** matrix, int ySize, int xSize, int yStart, int xStart, int yEnd, int xEnd) {
-	if (xStart == xEnd || yStart == yEnd) { return; }
+	if (xStart == xEnd && yStart == yEnd) { return; }
 
 	int** dMatrix = new int* [ySize];
 	for (int y = 0; y < ySize; y++) {
@@ -154,7 +116,7 @@ void find_path_with_priorities(int** matrix, int ySize, int xSize, int yStart, i
 
 	dMatrix[yStart][xStart] = 0;
 
-	OrderedQueue queue_;
+	OrderedQueue<MyPoint> queue_;
 	queue_.add({ xStart, yStart, 0 });
 	bool pathFound = false;
 
@@ -162,14 +124,14 @@ void find_path_with_priorities(int** matrix, int ySize, int xSize, int yStart, i
 	int Y_[] = { 0, 0, -1, 1 };
 	for (; !queue_.is_empty();) {
 		MyPoint current = queue_.pop();
-		std::cout << current.x << ' ' << current.y << ' ' << current.n << '\n';
+		if (DEBUG) std::cout << current.x << ' ' << current.y << ' ' << current.n << '\n';
 
 		//int nz = current.n + matrix[current.y][current.x];
 
 		for (int i = 0; i < 4; i++) {
 			int nx = X_[i] + current.x;
 			int ny = Y_[i] + current.y;
-			std::cout << nx << ' ' << ny << '\n';
+			if (DEBUG) std::cout << nx << ' ' << ny << '\n';
 			if (nx >= xSize || nx < 0 || ny >= ySize || ny < 0) continue;
 			if (matrix[ny][nx] != -1 && (dMatrix[ny][nx] == -1 || dMatrix[ny][nx] > current.n + matrix[ny][nx])) {
 				queue_.add({ nx,ny,current.n + matrix[ny][nx] });
@@ -178,7 +140,7 @@ void find_path_with_priorities(int** matrix, int ySize, int xSize, int yStart, i
 				//matrix[ny][nx] = -8;
 			}
 		}
-		printMatrix(dMatrix, ySize, xSize);
+		if (DEBUG) printMatrix(dMatrix, ySize, xSize);
 		
 	}
 	printMatrix(dMatrix, ySize, xSize);
@@ -201,22 +163,32 @@ void find_path_with_priorities(int** matrix, int ySize, int xSize, int yStart, i
 	matrix[yEnd][xEnd] = 127;//end
 }
 
-int main() {
-	int __ = 1;
-	int WW = -1;
-	int II = 8;
-	int x1[] = { WW,WW,WW,WW,WW,WW,WW,WW,WW,WW,WW,WW };
-	int x2[] = { WW,__,__,__,__,__,__,__,__,__,__,__ };
-	int x3[] = { WW,__,WW,WW,WW,WW,WW,WW,WW,WW,WW,__ };
-	int x4[] = { WW,__,WW,__,__,__,WW,__,__,__,WW,__ };
-	int x5[] = { WW,__,WW,__,WW,WW,WW,__,WW,__,WW,__ };
-	int x6[] = { WW,II,WW,__,WW,WW,WW,__,WW,__,WW,__ };
-	int x7[] = { __,__,__,__,__,__,__,__,WW,__,__,__ };
-	int x8[] = { __,__,__,WW,WW,WW,WW,WW,WW,WW,WW,WW };
-	int* M[] = { x1,x2,x3,x4,x5,x6,x7,x8 };
-	find_path_with_priorities(M, 8, 12, 1, 1, 6, 3);
+void test() {
+	OrderedQueue<MyPoint> queue;
 
-	printMatrix_(M, 8, 12);
+
+	queue.add({ 0,0,8 });
+	queue.add({ 0,1,2 });
+	queue.add({ 1,0,4 });
+	queue.add({ 0,2,0 });
+	std::cout << "added { 0,0,8 },{ 0,1,2 },{ 1,0,4 },{ 0,2,0 } \n";
+
+
+	std::cout << "heapifying to get a point that has the smallest N \n";
+
+
+	MyPoint p;
+	while (!queue.is_empty()){
+		p = queue.pop();
+		std::cout << "popped - X:Y - " << p.x << ":" << p.y << " N:" << p.n << '\n';
+	}
+
+	std::cout << "checking is the quque empty: " << queue.is_empty();
+}
+
+int main() {
+	test();
+	
 
 	return 0;
 }

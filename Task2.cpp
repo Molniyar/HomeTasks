@@ -185,10 +185,10 @@ void test() {
 
 	std::cout << "checking is the quque empty: " << queue.is_empty();
 }
-
+/*
 int main() {
 	test();
 	
 
 	return 0;
-}
+}*/

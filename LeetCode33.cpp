@@ -54,7 +54,7 @@ int search(vector<int>& nums, int target) {
 	if (nums[(index + start) % size] != target) return -1;
 	else return (index + start) % size;
 }
-
+/*
 int main() {
 
 	vector<int> arr0 = { 5,6,7,8,1,2,3 };
@@ -93,3 +93,4 @@ int main() {
 		cout << "==============================================\n";
 	}
 }
+//*/

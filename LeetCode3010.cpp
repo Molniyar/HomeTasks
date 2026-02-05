@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+//easy
 int minimumCost(vector<int>& nums) {
 	int first = 51;
 	int second = 51;
@@ -17,7 +17,7 @@ int minimumCost(vector<int>& nums) {
 	}
 	return nums[0] + first + second;
 }
-
+/*
 int main() {
 	vector<int> arr0 = { 5,6,7,8,1,2,3 };
 	vector<int> arr1 = { 4,5,6,7,0,1,2 };
@@ -37,3 +37,4 @@ int main() {
 	}
 	return 0;
 }
+//*/

@@ -32,8 +32,9 @@ vector<string> letterCombinations(string digits) {
 			}
 		}
 	}
+	return result;
 }
-
+/*
 int main() {
 	vector<string> res = letterCombinations("9");
 	for (int i = 0; i < res.size(); i++) {
@@ -45,3 +46,4 @@ int main() {
 	}
 	return 0;
 }
+//*/

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36408.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HomeTasks", "HomeTasks.vcxproj", "{87BAE33E-7114-4679-AEAD-AA1F9E06D518}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87BAE33E-7114-4679-AEAD-AA1F9E06D518}.Debug|x64.ActiveCfg = Debug|x64
+		{87BAE33E-7114-4679-AEAD-AA1F9E06D518}.Debug|x64.Build.0 = Debug|x64
+		{87BAE33E-7114-4679-AEAD-AA1F9E06D518}.Debug|x86.ActiveCfg = Debug|Win32
+		{87BAE33E-7114-4679-AEAD-AA1F9E06D518}.Debug|x86.Build.0 = Debug|Win32
+		{87BAE33E-7114-4679-AEAD-AA1F9E06D518}.Release|x64.ActiveCfg = Release|x64
+		{87BAE33E-7114-4679-AEAD-AA1F9E06D518}.Release|x64.Build.0 = Release|x64
+		{87BAE33E-7114-4679-AEAD-AA1F9E06D518}.Release|x86.ActiveCfg = Release|Win32
+		{87BAE33E-7114-4679-AEAD-AA1F9E06D518}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E981272E-4DE7-4E30-B3EF-4097AA9E41AE}
+	EndGlobalSection
+EndGlobal

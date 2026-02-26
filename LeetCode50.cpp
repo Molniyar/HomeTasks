@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-double myPow(double x, int n) {
+double myPow(double x, long n) {
 	bool is_negative = false;
 	double result = 1;
 	double multiple = x;
@@ -20,7 +20,7 @@ double myPow(double x, int n) {
 	}
 	return is_negative ? 1.0 / result : result;
 }
-
+/*
 int main() {
 	cout << myPow(2, 8) << '\n';
 	cout << myPow(2, -1) << '\n';
@@ -29,3 +29,4 @@ int main() {
 	cout << myPow(2, -2147483648) << '\n'; 
 	return 0;
 }
+//*/

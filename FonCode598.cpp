@@ -4,7 +4,7 @@ void print_shift(int n) {
 	if (!n) return; 
 	std::cout << "x = x " << ((n > 0) ? "<< " : ">> ") << ((n > 0) ? n : -n) << ";\n";
 }
-
+/*
 int main() {
 	int negative = 0x80000000;
 
@@ -61,3 +61,4 @@ int main() {
 
 	return 0;
 }
+//*/

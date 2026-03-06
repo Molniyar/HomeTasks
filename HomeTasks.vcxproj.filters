@@ -63,5 +63,14 @@
     <ClCompile Include="Foncode114.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Foncode88.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Foncode797.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Foncode987.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

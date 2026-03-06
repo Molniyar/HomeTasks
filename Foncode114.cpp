@@ -1,5 +1,6 @@
 #include <iostream>
 
+/*
 int main() {
 	double ax; std::cin >> ax;
 	double ay; std::cin >> ay;
@@ -21,3 +22,4 @@ int main() {
 	std::cout << '\n';
 	std::cout << (result2 < 0 ? -result2 : result2);
 }
+//*/

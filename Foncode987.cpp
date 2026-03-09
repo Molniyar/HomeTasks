@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 
+/*
 int main() {
 	std::cout << std::setprecision(8);
 
@@ -16,3 +17,4 @@ int main() {
 
 	std::cout << sum / length;
 }
+//*/

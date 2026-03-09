@@ -123,11 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Foncode1000.cpp" />
     <ClCompile Include="Foncode114.cpp" />
     <ClCompile Include="FonCode598.cpp" />
     <ClCompile Include="Foncode68.cpp" />
     <ClCompile Include="FonCode71.cpp" />
     <ClCompile Include="Foncode797.cpp" />
+    <ClCompile Include="Foncode859.cpp" />
     <ClCompile Include="Foncode86.cpp" />
     <ClCompile Include="Foncode88.cpp" />
     <ClCompile Include="Foncode965.cpp" />

@@ -17,7 +17,7 @@ int main() {
 		case 'L': { L++; break; }
 		}
 	}
-	if (S < (pos_in_queue-1)*3 || M < (pos_in_queue - 1)*3 || L < (pos_in_queue - 1)*3) {
+	if (S <= (pos_in_queue-1)*3 || M <= (pos_in_queue - 1)*3 || L <= (pos_in_queue - 1)*3) {
 		std::cout << "NO";
 	}
 	else std::cout << "YES";

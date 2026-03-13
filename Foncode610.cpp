@@ -14,6 +14,7 @@ static bool compare_index(indexed_int a, indexed_int b) {
 	return a.index < b.index;
 }
 
+/*
 int main() {
 	long size; std::cin >> size;
 	std::int64_t money; std::cin >> money;
@@ -32,8 +33,7 @@ int main() {
 	for (int i = 0; i < size && money; i++) {
 		if (array[i].value > array[i + 1].value) {
 			std::int64_t dif = (array[i].value - array[i + 1].value); 
-			if (dif * (i + 1) > money) {std::cout << " dif = " << dif << " array[i] = " << array[i].value << " array[i+1] = " << array[i+1].value << '\n';
-				//dif = array[0].value - array[i - 1].value;
+			if (dif * (i + 1) > money) {//std::cout << " dif = " << dif << " array[i] = " << array[i].value << " array[i+1] = " << array[i+1].value << '\n';
 				for (int j = i; j >= 0; j--) {
 					//money -= array[j].value-array[i-1].value;
 					array[j].value = array[i].value;
@@ -45,11 +45,7 @@ int main() {
 				}
 				money = money % (i + 1);
 				break;
-			}/*
-			for (int j = i; j >= 0; j--) {
-				//array[j].value -= dif;
-				money -= dif;
-			}//*/
+			}
 			money -= dif * (i+1);
 		}
 	}
@@ -70,3 +66,4 @@ int main() {
 	delete array;
 	return 0;
 }
+//*/

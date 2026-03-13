@@ -28,21 +28,29 @@ int main() {
 
 	std::sort(array,array+size,compare_value);
 	
+	int from_index = 0;
 	for (int i = 0; i < size && money; i++) {
 		if (array[i].value > array[i + 1].value) {
-			std::int64_t dif = (array[i].value - array[i + 1].value); //std::cout << "dif = " << dif << '\n';
-			if (dif * (i + 1) > money) {
+			std::int64_t dif = (array[i].value - array[i + 1].value); 
+			if (dif * (i + 1) > money) {std::cout << " dif = " << dif << " array[i] = " << array[i].value << " array[i+1] = " << array[i+1].value << '\n';
+				//dif = array[0].value - array[i - 1].value;
+				for (int j = i; j >= 0; j--) {
+					//money -= array[j].value-array[i-1].value;
+					array[j].value = array[i].value;
+				}
+
 				dif = money / (i + 1); //std::cout << "redefinition of dif = " << dif << '\n';
 				for (int j = i; j >= 0; j--) {
 					array[j].value -= dif;
 				}
 				money = money % (i + 1);
 				break;
-			}
+			}/*
 			for (int j = i; j >= 0; j--) {
-				array[j].value -= dif;
+				//array[j].value -= dif;
 				money -= dif;
-			}
+			}//*/
+			money -= dif * (i+1);
 		}
 	}
 

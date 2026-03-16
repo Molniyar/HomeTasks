@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+/*
 int main() {
 	int size; std::cin >> size;
 	std::int64_t min = 0;
@@ -39,3 +40,4 @@ int main() {
 	std::cout << min << ' ' << max;
 	return 0;
 }
+//*/

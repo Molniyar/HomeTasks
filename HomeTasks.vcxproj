@@ -142,6 +142,7 @@
     <ClCompile Include="Foncode859.cpp" />
     <ClCompile Include="Foncode86.cpp" />
     <ClCompile Include="Foncode88.cpp" />
+    <ClCompile Include="Foncode94.cpp" />
     <ClCompile Include="Foncode965.cpp" />
     <ClCompile Include="Foncode987.cpp" />
     <ClCompile Include="LeetCode17.cpp" />

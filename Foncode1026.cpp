@@ -1,6 +1,6 @@
 #include <iostream>
 
-
+/*
 int main() {
 	int size; std::cin >> size;
 	int width; std::cin >> width;
@@ -19,3 +19,4 @@ int main() {
 	}
 	else std::cout << ((s2 - s1 + width) >> 1);
 }
+//*/

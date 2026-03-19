@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 
-//*
+/*
 int main() {
 	int ax; std::cin >> ax;
 	int ay; std::cin >> ay;

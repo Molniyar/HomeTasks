@@ -1,6 +1,6 @@
 #include <iostream>
 
-//*
+/*
 int main() {
 	int arg1; std::cin >> arg1;
 	int arg2; std::cin >> arg2;

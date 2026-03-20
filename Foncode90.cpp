@@ -1,7 +1,7 @@
 #include <iostream>
 #include <map>
 
-//*
+/*
 int main() {
 	int size; std::cin >> size;
 
@@ -21,6 +21,7 @@ int main() {
 		}
 	}
 
+	std::cout << prices.size() << '\n';
 	for (auto item: prices) {
 		std::cout << item.first << ' ' << item.second << '\n';
 	}

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 
-//*
+/*
 int main() {
 	int size; std::cin >> size;
 	int changing_size = size;

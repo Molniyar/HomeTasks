@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 
-//*
+/*
 int main() {
 	int size0; std::cin >> size0;
 	int size1; std::cin >> size1;

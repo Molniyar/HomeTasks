@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 
-//*
+/*
 int main() {
 	int size; std::cin >> size;
 
@@ -20,7 +20,7 @@ int main() {
 		}
 
 		g[i] = 0;
-		for (int j = read.size() - 1; j >= 0; j--) {
+		for (int j = 0; j < read.size(); j++) {
 			g[i] *= 10;
 			g[i] += read[j]-'0';
 		}
@@ -34,7 +34,7 @@ int main() {
 	std::int64_t sum = 0;
 
 	for (int i = 0; i < size; i++) {
-		sum += b[i] * dec_shifts[i];
+		sum += (std::int64_t)(b[i]) * dec_shifts[i];
 		sum += g[i];
 	}
 

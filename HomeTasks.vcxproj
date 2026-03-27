@@ -135,6 +135,7 @@
     <ClCompile Include="Foncode1029.cpp" />
     <ClCompile Include="Foncode1030.cpp" />
     <ClCompile Include="Foncode1032.cpp" />
+    <ClCompile Include="Foncode1036.cpp" />
     <ClCompile Include="Foncode107.cpp" />
     <ClCompile Include="Foncode114.cpp" />
     <ClCompile Include="FonCode598.cpp" />

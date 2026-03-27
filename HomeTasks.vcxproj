@@ -166,6 +166,7 @@
     <ClCompile Include="OrderedQueue.h" />
     <ClCompile Include="sorting.cpp" />
     <ClCompile Include="sorting_old.cpp" />
+    <ClCompile Include="Task1019.cpp" />
     <ClCompile Include="Task2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

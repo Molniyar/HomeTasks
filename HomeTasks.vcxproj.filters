@@ -147,5 +147,8 @@
     <ClCompile Include="Foncode1036.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Task1019.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

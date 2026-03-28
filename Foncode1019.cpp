@@ -1,6 +1,6 @@
 #include <iostream>
 
-//*
+/*
 int main() {
 	int size; std::cin >> size;
 
@@ -9,7 +9,7 @@ int main() {
 	for (int i = 0; i < size;i++) {
 		std::cin >> read;
 		array[i] = ((read & 1) ? -1 : 1);
-		std::cout << (int)array[i] << ',';
+		//std::cout << (int)array[i] << ',';
 	}
 
 	int result = 0;

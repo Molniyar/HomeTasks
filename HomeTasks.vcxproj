@@ -136,6 +136,7 @@
     <ClCompile Include="Foncode1030.cpp" />
     <ClCompile Include="Foncode1032.cpp" />
     <ClCompile Include="Foncode1036.cpp" />
+    <ClCompile Include="Foncode1039.cpp" />
     <ClCompile Include="Foncode107.cpp" />
     <ClCompile Include="Foncode114.cpp" />
     <ClCompile Include="FonCode598.cpp" />
@@ -166,7 +167,7 @@
     <ClCompile Include="OrderedQueue.h" />
     <ClCompile Include="sorting.cpp" />
     <ClCompile Include="sorting_old.cpp" />
-    <ClCompile Include="Task1019.cpp" />
+    <ClCompile Include="Foncode1019.cpp" />
     <ClCompile Include="Task2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

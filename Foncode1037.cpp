@@ -1,6 +1,6 @@
 #include <iostream>
 #include <map>
-
+/*
 int main() {
 	int size; std::cin >> size;
 
@@ -25,3 +25,4 @@ int main() {
 
 	std::cout << result;
 }
+//*/

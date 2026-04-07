@@ -1,6 +1,6 @@
 #include <iostream>
 
-//*
+/*
 int main() {
 	int ports; std::cin >> ports;
 	int size; std::cin >> size;

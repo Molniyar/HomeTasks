@@ -159,5 +159,8 @@
     <ClCompile Include="Foncode607.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Foncode595.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

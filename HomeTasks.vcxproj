@@ -140,8 +140,10 @@
     <ClCompile Include="Foncode1039.cpp" />
     <ClCompile Include="Foncode107.cpp" />
     <ClCompile Include="Foncode114.cpp" />
+    <ClCompile Include="Foncode581.cpp" />
     <ClCompile Include="Foncode595.cpp" />
     <ClCompile Include="FonCode598.cpp" />
+    <ClCompile Include="Foncode599.cpp" />
     <ClCompile Include="Foncode607.cpp" />
     <ClCompile Include="Foncode610.cpp" />
     <ClCompile Include="Foncode616.cpp" />
@@ -172,6 +174,7 @@
     <ClCompile Include="sorting_old.cpp" />
     <ClCompile Include="Foncode1019.cpp" />
     <ClCompile Include="Task2.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

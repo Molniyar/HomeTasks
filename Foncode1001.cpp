@@ -1,9 +1,9 @@
 #include <iostream>
 
-//*
+/*
 
 int main() {
-	int balls; std::cin >> balls;
+	std::int64_t balls; std::cin >> balls;
 	int switches; std::cin >> switches;
 
 	if (switches & 1) {
@@ -11,8 +11,8 @@ int main() {
 		return 0;
 	}
 
-	int read_off = 0;
-	int read_on = 0;
+	std::int64_t read_off;
+	std::int64_t read_on;
 	for (int i = 0; i < switches-1; i+=2) {
 		std::cin >> read_off;
 		std::cin >> read_on;

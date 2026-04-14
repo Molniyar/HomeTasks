@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="Foncode1000.cpp" />
     <ClCompile Include="Foncode1001.cpp" />
+    <ClCompile Include="Foncode1003.cpp" />
     <ClCompile Include="Foncode1004.cpp" />
     <ClCompile Include="Foncode1007.cpp" />
     <ClCompile Include="Foncode1008.cpp" />

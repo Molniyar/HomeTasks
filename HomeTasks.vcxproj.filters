@@ -183,5 +183,8 @@
     <ClCompile Include="Foncode1003.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Foncode1013.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

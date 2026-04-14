@@ -1,6 +1,6 @@
 #include <iostream>
 
-//*
+/*
 
 int main() {
 	int rows; std::cin >> rows;

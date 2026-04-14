@@ -1,6 +1,15 @@
 #include <iostream>
 
-//*
+/*
+struct Bounds {
+	std::int64_t MIN;
+	std::int64_t MID_BEFORE;
+	std::int64_t MID_AFTER;
+	std::int64_t MAX;
+};
+
+
+bool debug = true;
 
 double lambda_test(double a, double b, double k) {
 	return (a * b * (k + 1)) + ((a - b) * ((k + 1) * k / 2)) - (k * (k + 1) * (2 * k + 1) / 6);
@@ -8,9 +17,77 @@ double lambda_test(double a, double b, double k) {
 std::int64_t lambda(std::int64_t a, std::int64_t b, std::int64_t k) {
 	return (a * b * (k + 1))  +  ((a - b) * ((k + 1) * k / 2))  -  (k * (k + 1) * (2 * k + 1) / 6);
 }
-int main() {
-	bool debug = true;
+Bounds find_bounds(std::int64_t a, std::int64_t b) {
+	int prev = 0;
+	std::int64_t PREV_MIN = 0;
+	std::int64_t MIN = 1;
+	for (double x = 0;x > 1e18 && x < -1e18; ) {
+		if (x > 1e18) prev == 1;
+		else prev = -1;
+		PREV_MIN = MIN;
+		MIN <<= 1;
+		x = lambda_test(a, b, MIN);
+		if (debug) std::cout << "||||" << PREV_MIN << ' ' << MIN << ' ' << x << '\n';
+	}
+	for (int iter = 0; iter < 256 && PREV_MIN + 1 < MIN; iter++) {
+		int mid = (PREV_MIN + MIN) >> 1;
 
+		if (debug) std::cout << "|||" << PREV_MIN << ' ' << mid << ' ' << MIN << " | " << lambda_test(a, b, mid) << '\n';
+
+		if (lambda_test(a, b, mid) <= 1e18 || lambda_test(a, b, mid) >= -1e18) {
+			MIN = mid;
+		}
+		else PREV_MIN = mid;
+	}
+	MIN = PREV_MIN;
+
+	if (debug) std::cout << "MIN = " << MIN << '\n';
+
+	std::int64_t PREV_MAX = 1;
+	std::int64_t MAX = MIN + 1;
+
+	for (double x = 0;x <= 1e18 && x >= -1e18; ) {
+		PREV_MAX = MAX;
+		MAX <<= 1;
+		x = lambda_test(a, b, MAX);
+		if (debug) std::cout << "||||" << PREV_MAX << ' ' << MAX << ' ' << x << '\n';
+	}
+	for (int iter = 0; iter < 256 && PREV_MAX + 1 < MAX; iter++) {
+		int mid = (PREV_MAX + MAX) >> 1;
+
+		if (debug) std::cout << "|||" << PREV_MAX << ' ' << mid << ' ' << MAX << " | " << lambda_test(a, b, mid) << '\n';
+
+		if (lambda_test(a, b, mid) > 1e18 || lambda_test(a, b, mid) < -1e18) {
+			MAX = mid;
+		}
+		else PREV_MAX = mid;
+	}
+
+	MAX = PREV_MAX;
+
+	if (debug) std::cout << "MAX = " << MAX << '\n';
+
+	std::int64_t min = MIN;
+	std::int64_t max = MAX;
+
+	for (int iter = 0; iter < 256 && min + 1 < max; iter++) {
+		std::int64_t mid = (min + max) >> 1;
+
+		std::int64_t left = lambda(a, b, mid - 1);
+		std::int64_t current = lambda(a, b, mid);
+		std::int64_t right = lambda(a, b, mid + 1);
+
+		if (debug) std::cout << "||" << min << ' ' << mid << ' ' << max << " | " << left << ' ' << current << ' ' << right << " | " << std::abs(current - left) << ' ' << std::abs(right - current) << '\n';
+
+		if (std::abs(current - left) < std::abs(right - current)) {
+			max = mid;
+		}
+		else min = mid;
+	}
+	if (debug) std::cout << "|" << min << ' ' << max << '\n';
+}
+
+int main() {
 	int size; std::cin >> size;
 	std::int64_t a;
 	std::int64_t b;
@@ -20,80 +97,15 @@ int main() {
 		std::cin >> b;
 		std::cin >> r;
 
+		Bounds bounds = find_bounds(a, b);
+		
 
-		std::int64_t PREV_MIN = 0;
-		std::int64_t MIN = 1;
-		for (double x = 0;x > 1e18 && x < -1e18; ) {
-			PREV_MIN = MIN;
-			MIN <<= 1;
-			x = lambda_test(a, b, MIN);
-			if (debug) std::cout << "||||" << PREV_MIN << ' ' << MIN << ' ' << x << '\n';
-		}
-		//*
-		for (int iter = 0; iter < 256 && PREV_MIN + 1 < MIN; iter++) {
-			int mid = (PREV_MIN + MIN) >> 1;
+		std::int64_t min1 = bounds.MIN;
+		std::int64_t max1 = bounds.MID_BEFORE;
+		std::int64_t min2 = bounds.MID_AFTER;
+		std::int64_t max2 = bounds.MIN;
 
-			if (debug) std::cout << "|||" << PREV_MIN << ' ' << mid << ' ' << MIN << " | " << lambda_test(a, b, mid) << '\n';
-
-			if (lambda_test(a, b, mid) <= 1e18 || lambda_test(a, b, mid) >= -1e18) {
-				MIN = mid;
-			}
-			else PREV_MIN = mid;
-		}//*/
-		MIN = PREV_MIN;
-
-		if (debug) std::cout << "MIN = " << MIN << '\n';
-
-		std::int64_t PREV_MAX = 1;
-		std::int64_t MAX = MIN+1;// everything`s not that easy
-
-		for (double x = 0;x <= 1e18 && x >= -1e18; ) {
-			PREV_MAX = MAX;
-			MAX <<= 1;
-			x = lambda_test(a, b, MAX);
-			if (debug) std::cout << "||||" << PREV_MAX << ' ' << MAX << ' ' << x << '\n'; 
-		}
-		//*
-		for (int iter = 0; iter < 256 && PREV_MAX + 1 < MAX; iter++) {
-			int mid = (PREV_MAX + MAX) >> 1;
-
-			if (debug) std::cout << "|||" << PREV_MAX << ' ' << mid << ' ' << MAX << " | " << lambda_test(a,b,mid) << '\n';
-
-			if (lambda_test(a, b, mid) > 1e18 || lambda_test(a, b, mid) < -1e18) {
-				MAX = mid;
-			}
-			else PREV_MAX = mid;
-		}//*/
-
-		MAX = PREV_MAX;
-
-		if (debug) std::cout << "MAX = " << MAX << '\n';
-
-		std::int64_t min = MIN;
-		std::int64_t max = MAX;
-
-		for (int iter = 0; iter < 256 && min + 1 < max; iter++) {
-			std::int64_t mid = (min + max) >> 1;
-
-			std::int64_t left = lambda(a, b, mid - 1);
-			std::int64_t current = lambda(a, b, mid);
-			std::int64_t right = lambda(a, b, mid + 1);
-
-			if (debug) std::cout << "||" << min << ' ' << mid << ' ' << max << " | " << left << ' ' << current << ' ' << right << " | " << std::abs(current - left) << ' ' << std::abs(right - current) << '\n';
-
-			if (std::abs(current - left) < std::abs(right - current)) {
-				max = mid;
-			}
-			else min = mid;
-		}
-		if (debug) std::cout << "|" << min << ' ' << max << '\n';
-
-		std::int64_t min1 = 0;
-		std::int64_t max1 = max;
-		std::int64_t min2 = max;
-		std::int64_t max2 = MAX;
-
-		if (lambda(a, b, 0) > lambda(a, b, min)) {
+		if (lambda(a, b, 0) > lambda(a, b, bounds.MID_BEFORE)) {
 			std::swap(min1, min2);
 			std::swap(max1, max2);
 		}

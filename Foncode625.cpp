@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stack>
 
-//*
+/*
 // matrix
 // - - - - - - 
 // | 0 0 0 0 I 

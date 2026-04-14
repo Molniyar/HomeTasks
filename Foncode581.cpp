@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stack>
 
-//*
+/*
 
 struct link_item {
 	int value;

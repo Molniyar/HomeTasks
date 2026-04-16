@@ -1,11 +1,7 @@
 #include <iostream>
 #include <algorithm>
 
-//*
-std::int64_t div_(std::int64_t a, std::int64_t b) {
-	return a / b + (a % b != 0);
-}
-
+/*
 int main() {
 	std::int64_t to_find; std::cin >> to_find;
 	std::int64_t rows; std::cin >> rows;

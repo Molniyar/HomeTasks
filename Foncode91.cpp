@@ -1,7 +1,6 @@
 #include <iostream>
-#include <queue>
 
-//*
+/*
 int main() {
 	int size; std::cin >> size;
 	int array[50000];

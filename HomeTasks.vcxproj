@@ -176,6 +176,8 @@
     <ClCompile Include="FoncodeContents968_3.cpp" />
     <ClCompile Include="FoncodeContents968_5.cpp" />
     <ClCompile Include="FoncodeContests968_1.cpp" />
+    <ClCompile Include="FoncodeContests968_2.cpp" />
+    <ClCompile Include="FoncodeContests968_4.cpp" />
     <ClCompile Include="LeetCode17.cpp" />
     <ClCompile Include="LeetCode26.cpp" />
     <ClCompile Include="LeetCode3010.cpp" />

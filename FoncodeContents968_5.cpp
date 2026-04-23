@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 
-//*
+/*
 bool debug = true;
 
 bool get_in_and_out(double &res1, double &res2, double x, double y, double z, double xv, double yv, double zv, double r) {

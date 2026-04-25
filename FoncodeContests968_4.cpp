@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-
+/*
 int size;
 
 const int OUT_OF_BOUNDS = -1;
@@ -24,7 +24,7 @@ struct TPoint
 	TPoint operator-(const TPoint& b) { return { x - b.x, y - b.y }; }
 };
 
-//*
+
 struct TPole
 {
 	int map[10][10];
@@ -145,7 +145,6 @@ int main() {
 					return 0;
 				}
 			}
-			//*/
 		}
 	}
 	std::cout << "No";

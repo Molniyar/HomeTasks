@@ -225,5 +225,11 @@
     <ClCompile Include="FoncodeContests969_5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FoncodeContests969_4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Foncode113.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

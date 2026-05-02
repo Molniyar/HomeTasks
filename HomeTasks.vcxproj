@@ -145,6 +145,7 @@
     <ClCompile Include="Foncode1037.cpp" />
     <ClCompile Include="Foncode1039.cpp" />
     <ClCompile Include="Foncode107.cpp" />
+    <ClCompile Include="Foncode113.cpp" />
     <ClCompile Include="Foncode114.cpp" />
     <ClCompile Include="Foncode581.cpp" />
     <ClCompile Include="Foncode595.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="FoncodeContests968_4.cpp" />
     <ClCompile Include="FoncodeContests969_1.cpp" />
     <ClCompile Include="FoncodeContests969_3.cpp" />
+    <ClCompile Include="FoncodeContests969_4.cpp" />
     <ClCompile Include="FoncodeContests969_5.cpp" />
     <ClCompile Include="LeetCode17.cpp" />
     <ClCompile Include="LeetCode26.cpp" />

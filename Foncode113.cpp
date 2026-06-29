@@ -1,5 +1,9 @@
 #include <iostream>
 #include <cmath>
+#include <algorithm>
+#include <vector>
+/*
+bool debug = 0;
 
 struct TPoint
 {
@@ -18,6 +22,19 @@ struct TPoint
 	bool operator==(const TPoint& p) const {
 		return (x == p.x && y == p.y);
 	}
+
+	bool operator < (const TPoint& other) const {
+		if (x == other.x) return y < other.y;
+		return x < other.x;
+	}
+
+	double length() const {
+		return std::sqrt(x*x + y*y);
+	}
+
+	void print() {
+		std::cout << " {" << x << ';' << y << "} ";
+	}
 };
 
 struct Node {
@@ -25,16 +42,13 @@ struct Node {
 	TPoint data;
 	Node* next = nullptr;
 
-	bool operator==(const Node& b) const { return (b.data == data && prev == b.prev && prev == b.prev); }
 	void print() {
 		std::cout << " {" << data.x << ';' << data.y << "} ";
 	}
 };
 
 double get_length(TPoint from, TPoint to) {
-	int x = std::max(from.x, to.x) - std::min(from.x, to.x);
-	int y = std::max(from.y, to.y) - std::min(from.y, to.y);
-	return std::sqrt(x * x + y * y);
+	return (from - to).length();
 }
 
 int get_line(const TPoint& from, const TPoint& to, const TPoint& curr) {// maybe swap to and from
@@ -47,111 +61,65 @@ int get_line(const TPoint& from, const TPoint& to, const TPoint& curr) {// maybe
 	return A * X + B * Y + C;
 }
 
-Node nodes[1000];
+double scalar(const TPoint& vec1, const TPoint& vec2) {
+	return (vec1.x * vec2.x + vec1.y * vec2.y);
+}
+
+double scalar_cos(const TPoint& vec1, const TPoint& vec2) {
+	return scalar(vec1, vec2) / (vec2.length() * vec2.length());
+}
+
+TPoint array[1000];
+TPoint up[1000];
+TPoint down[1000];
 int main() {
 	int size; std::cin >> size;
 
-	std::cin >> nodes[0].data.x;
-	std::cin >> nodes[0].data.y;
-	std::cin >> nodes[1].data.x;
-	std::cin >> nodes[1].data.y;
-	std::cin >> nodes[2].data.x;
-	std::cin >> nodes[2].data.y;
-	nodes[0].next = &nodes[1];
-	nodes[1].next = &nodes[2];
-	nodes[2].next = &nodes[0];
-	nodes[0].prev = &nodes[2];
-	nodes[1].prev = &nodes[0];
-	nodes[2].prev = &nodes[1];
-
-	Node start = nodes[0];
-
-	for (int i = 3; i < size; i++) {
-		std::cin >> nodes[i].data.x;
-		std::cin >> nodes[i].data.y;
-
-		Node* prev = nullptr;
-		Node* next = nullptr;
-		int prevs = 0;
-		for (int j = 0; j < i; j++) {
-			Node* Prev = nodes[j].prev;
-			Node* Next = nodes[j].next;
-			int l1 = get_line(nodes[i].data, nodes[j].data, Prev->data);
-			int l2 = get_line(nodes[i].data, nodes[j].data, Next->data);
-			if ((l1 > 0 && l2 < 0) || (l1 < 0 && l2 > 0)) {
-				continue;
-			}
-			if (l1 > 0 || l2 > 0) {
-				prev = &nodes[j];
-				prevs = 1;
-				continue;
-			}
-			if (l1 < 0 || l2 < 0) {
-				next = &nodes[j];
-				prevs = -1;
-				continue;
-			}
-			if (l1 == 0 && l2 == 0) {
-				if (prevs == 1) {
-					next = &nodes[j];
-					prevs = -1;
-				}
-				else {
-					prev = &nodes[j];
-					prevs = 1;
-				}
-			}
-		}
-		if (prev == nullptr || next == nullptr) {
-			std::cout << "<not added>\n";
-			continue;
-		}
-		std::cout << "C| ";
-		prev->prev->print();
-		prev->print();
-		prev->next->print();
-		std::cout << " | ";
-		nodes[i].print();
-		std::cout << " | ";
-		next->prev->print();
-		next->print();
-		next->next->print();
-		std::cout << "\n";
-
-		if (get_length(nodes[i].data, prev->prev->data) < get_length(nodes[i].data, prev->next->data)) {
-			nodes[i].next = prev;
-			nodes[i].next->prev = &nodes[i];
-		}
-		else {
-			nodes[i].prev = prev;
-			nodes[i].prev->next = &nodes[i];
-		}
-		
-		if (get_length(nodes[i].data, next->prev->data) < get_length(nodes[i].data, next->next->data)) {
-			nodes[i].next = next;
-			nodes[i].next->prev = &nodes[i];
-		}
-		else {
-			nodes[i].prev = next;
-			nodes[i].prev->next = &nodes[i];
-		}
-
-		start = nodes[i];
+	for (int i = 0; i < size; i++) {
+		std::cin >> array[i].x;
+		std::cin >> array[i].y;
 	}
 
-	std::cout << "[]\n";
+	std::sort(array, array + size);
+
+	int i = 0;
+	for (int j = 0; j < size; i++, j++) {
+		while (i >= 2 && get_line(up[i - 2], array[j], up[i - 1]) < 0) {
+			i--;
+			if (debug) std::cout << "^ X \n";
+		}
+		up[i] = array[j];
+
+		if (debug) {
+			std::cout << "^^ ";
+			up[i].print();
+			std::cout << '\n';
+		}
+	}
+	
+	int I = 0;
+	for (int j = 0; j < size; I++, j++) {
+		while (I >= 2 && get_line(down[I - 2], array[j], down[I - 1]) >= 0) {
+			I--;
+			if (debug) std::cout << "v X \n";
+		}
+		down[I] = array[j];
+
+		if (debug) {
+			std::cout << "vv ";
+			down[I].print();
+			std::cout << '\n';
+		}
+	}
 
 	double result = 0;
-	Node previous = start;
-	Node current = *previous.next;
-	while (!(current == start)) {
-		std::cout << "R| " << result << ' ' << previous.data.x << ' ' << previous.data.y << '\n';
-		result += get_length(previous.data, current.data);
-		previous = current;
-		current = *current.next;
+	for (int j = 0; j < i - 1; j++) {
+		result += get_length(up[j], up[j + 1]);
 	}
-	std::cout << "R/ " << result << ' ' << previous.data.x << ' ' << previous.data.y << '\n';
-	result += get_length(previous.data, current.data);
+	for (int j = 0; j < I - 1; j++) {
+		result += get_length(down[j], down[j + 1]);
+	}
+
 	std::cout << result;
-	return 0;
 }
+// */

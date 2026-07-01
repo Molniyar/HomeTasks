@@ -1,6 +1,28 @@
-#include <iostream>
-
 /*
+#include <iostream>
+void check_price_sum(int& sum, int& res_a, int& res_b, int check_a, int check_b, int index_a, int index_b) {
+	if (check_a > 100 || check_b > 100) return;
+
+	if (check_a + check_b < sum) {
+		res_a = index_a;
+		res_b = index_b;
+		sum = check_a + check_b;
+		return;
+	}
+	if (check_a + check_b == sum) {
+		if (res_a > index_a) { 
+			res_a = index_a;
+			res_b = index_b;
+			return;
+		}
+		if (res_a == index_a && res_b > index_b) {
+			//res_a = index_a;
+			res_b = index_b;
+			return;
+		}
+	}
+}
+
 int main() {
 	int len; std::cin >> len;
 
@@ -9,15 +31,15 @@ int main() {
 	int prev_both_index = -1;
 	int both_index = -1;
 
-	int a_price = 255;
-	int b_price = 255;
-	int prev_both_price = 255;
-	int both_price = 255;
+	int a_price = 256;
+	int b_price = 256;
+	int prev_both_price = 256;
+	int both_price = 256;
 
-	bool a_cont = 1;
-	bool b_cont = 2;
-	bool prev_both_cont = 3;
-	bool both_cont = 3;
+	int a_cont = 1;
+	int b_cont = 2;
+	int prev_both_cont = 3;
+	int both_cont = 3;
 
 	std::string read;
 	int price;
@@ -33,20 +55,20 @@ int main() {
 		//std::cout << contains << '\n';
 		switch (contains) {
 		case 1: {
-			if (a_price <= price)break;
+			if (a_price <= price) break;
 			a_index = i;
 			a_price = price;
 			break; 
 		}
 		case 2: {
-			if (b_price <= price)break;
+			if (b_price <= price) break;
 			b_index = i;
 			b_price = price;
 			break; 
 		}
 		case 3: {
 			if (prev_both_price <= price) {
-				if (both_price <= prev_both_price)break;
+				if (both_price <= price) break;
 				//prev_both_index = both_index;
 				//prev_both_price = both_price;
 				both_index = i;
@@ -61,36 +83,32 @@ int main() {
 		}
 		}
 	}
-	//std::cout << a_index << ' ' << b_index << ' ' << prev_both_index << ' ' << both_index << '\n';
-	//std::cout << a_price << ' ' << b_price << ' ' << prev_both_price << ' ' << both_price << "\n\n";
 
-	if (a_price > prev_both_price) {//sorting
-		std::swap(a_price, prev_both_price);
-		std::swap(b_price, both_price);
-		std::swap(a_index, prev_both_index);
-		std::swap(b_index, both_index);
-		std::swap(a_cont, prev_both_cont);
-		std::swap(b_cont, both_cont);
-	}
-	if (a_price > b_price) {
-		std::swap(a_price, b_price);
-		std::swap(a_index, b_index);
-		std::swap(a_cont, b_cont);
-	}
-	if (prev_both_price > both_price) {
-		std::swap(prev_both_price, both_price);
-		std::swap(prev_both_index, both_index);
-		std::swap(prev_both_cont, both_cont);
-	}
-	//std::cout << a_index << ' ' << b_index << ' ' << prev_both_index << ' ' << both_index << '\n';
-	//std::cout << a_price << ' ' << b_price << ' ' << prev_both_price << ' ' << both_price << "\n\n";
-	if (b_index == -1) {
+	//std::cout << a_index << ' ' << both_index << ' ' << prev_both_index << ' ' << b_index << " --\n";
+
+	int res_price_sum = 512;
+	int res_a = -1;
+	int res_b = -1;
+
+	check_price_sum(res_price_sum, res_a, res_b, a_price, both_price,      a_index, both_index);
+	check_price_sum(res_price_sum, res_a, res_b, a_price, prev_both_price, a_index, prev_both_index);
+	check_price_sum(res_price_sum, res_a, res_b, a_price, b_price,         a_index, b_index);
+
+	check_price_sum(res_price_sum, res_a, res_b, both_price, prev_both_price, both_index, prev_both_index);
+	check_price_sum(res_price_sum, res_a, res_b, both_price, b_price,         both_index, b_index);
+
+	check_price_sum(res_price_sum, res_a, res_b, prev_both_price, b_price, prev_both_index, b_index);
+	//swapped
+	check_price_sum(res_price_sum, res_a, res_b, prev_both_price, both_price, prev_both_index, both_index);
+
+	if (res_price_sum == 512) {
 		std::cout << "-1";
 		return 0;
 	}
-	if ((a_cont & 2) == 0) std::swap(a_index, b_index);
-	if ((a_cont & 3) && (b_cont & 3) && a_index > b_index) std::swap(a_index, b_index);
-	std::cout << a_index+1 << ' ' << b_index+1;
+	std::cout << res_a + 1 << ' ' << res_b + 1;
+
+
+	
 	return 0;
 }
 //*/

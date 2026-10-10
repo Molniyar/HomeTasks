@@ -1,10 +1,12 @@
+/*
+
 #include <iostream>
 
 using namespace std;
 
 
 int mod = 1'000'000'007;
-constexpr int64_t mod_pow(int64_t A, int p) {
+int64_t mod_pow(int64_t A, int p) {
 	int64_t a = A;
 	int64_t result = 1;
 	while (p) {
@@ -87,3 +89,5 @@ int main() {
 
 	cout << result;
 }
+
+//*/

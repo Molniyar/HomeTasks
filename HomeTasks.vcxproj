@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="F.cpp" />
     <ClCompile Include="Foncode100.cpp" />
     <ClCompile Include="Foncode1000.cpp" />
     <ClCompile Include="Foncode1001.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Foncode1014.cpp" />
     <ClCompile Include="Foncode1015.cpp" />
     <ClCompile Include="Foncode1016.cpp" />
+    <ClCompile Include="Foncode1020.cpp" />
     <ClCompile Include="Foncode1021.cpp" />
     <ClCompile Include="Foncode1024.cpp" />
     <ClCompile Include="Foncode1026.cpp" />
@@ -157,6 +159,7 @@
     <ClCompile Include="Foncode596.cpp" />
     <ClCompile Include="FonCode598.cpp" />
     <ClCompile Include="Foncode599.cpp" />
+    <ClCompile Include="Foncode600.cpp" />
     <ClCompile Include="Foncode607.cpp" />
     <ClCompile Include="Foncode610.cpp" />
     <ClCompile Include="Foncode616.cpp" />
@@ -172,6 +175,7 @@
     <ClCompile Include="Foncode75.cpp" />
     <ClCompile Include="Foncode797.cpp" />
     <ClCompile Include="Foncode828.cpp" />
+    <ClCompile Include="Foncode83.cpp" />
     <ClCompile Include="Foncode837.cpp" />
     <ClCompile Include="Foncode85.cpp" />
     <ClCompile Include="Foncode859.cpp" />
@@ -180,11 +184,15 @@
     <ClCompile Include="Foncode90.cpp" />
     <ClCompile Include="Foncode91.cpp" />
     <ClCompile Include="Foncode94.cpp" />
+    <ClCompile Include="Foncode95.cpp" />
     <ClCompile Include="Foncode965.cpp" />
+    <ClCompile Include="Foncode97.cpp" />
     <ClCompile Include="Foncode987.cpp" />
     <ClCompile Include="Foncode988.cpp" />
     <ClCompile Include="Foncode990.cpp" />
+    <ClCompile Include="Foncode991.cpp" />
     <ClCompile Include="Foncode994.cpp" />
+    <ClCompile Include="Foncode995.cpp" />
     <ClCompile Include="FoncodeContents968_3.cpp" />
     <ClCompile Include="FoncodeContents968_5.cpp" />
     <ClCompile Include="FoncodeContests968_1.cpp" />
